@@ -65,5 +65,23 @@ public class funderService {
 	
 	
 	
+	//Deleting
+	
+		//complete projects
+		@DELETE
+		@Path("/") 
+		@Consumes(MediaType.APPLICATION_XML) 
+		@Produces(MediaType.TEXT_PLAIN) 
+		public String deleteFunders(String funderData) 
+		{ 
+			//Convert the input string to an XML document
+			Document doc = Jsoup.parse(funderData, "", Parser.xmlParser()); 
+		 
+			//Read the value from the element <productID>
+			String funderID = doc.select("funderID").text(); 
+			String output = funderObj.deleteFunders(funderID); 
+			return output; 
+		}
+	
 
 }
