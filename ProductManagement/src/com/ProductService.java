@@ -21,7 +21,9 @@ public class ProductService {
 	
 	Product productObj = new Product(); 
 	
+	
 	//Reading
+	//completed projects
 	
 	@GET
 	@Path("/") 
@@ -32,7 +34,10 @@ public class ProductService {
 	 } 
 	
 	
+	
+	
 	//Inserting
+	//completed projects
 	
 	@POST
 	@Path("/") 
@@ -50,7 +55,10 @@ public class ProductService {
 	
 	
 	
+	
+	
 	//Updating
+	//Complete projects
 	
 	@PUT
 	@Path("/") 
@@ -73,10 +81,14 @@ public class ProductService {
 		return output; 
 	}
 	
+
+	
 	
 	//Deleting
+	
+	//complete projects
 	@DELETE
-	@Path("/") 
+	@Path("/Products") 
 	@Consumes(MediaType.APPLICATION_XML) 
 	@Produces(MediaType.TEXT_PLAIN) 
 	public String deleteProduct(String productData) 
@@ -89,5 +101,9 @@ public class ProductService {
 		String output = productObj.deleteProduct(productID); 
 		return output; 
 	}
+	
+	
+	
+	
 	
 }
