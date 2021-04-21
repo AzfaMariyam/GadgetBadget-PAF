@@ -88,7 +88,7 @@ public class ProductService {
 	
 	//complete projects
 	@DELETE
-	@Path("/Products") 
+	@Path("/") 
 	@Consumes(MediaType.APPLICATION_XML) 
 	@Produces(MediaType.TEXT_PLAIN) 
 	public String deleteProduct(String productData) 

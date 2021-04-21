@@ -1,6 +1,6 @@
 package com;
 
-import model.Product;
+import model.Project;
 
 //For REST Service
 import javax.ws.rs.*; 
@@ -18,7 +18,7 @@ import org.jsoup.nodes.Document;
 
 public class ProjectService {
 
-	Product projectObj = new Product(); 
+	Project projectObj = new Project(); 
 	
 	
 	
@@ -56,7 +56,7 @@ public class ProjectService {
 
 	//pending projects
 		@PUT
-		@Path("/Projects") 
+		@Path("/") 
 		@Consumes(MediaType.APPLICATION_JSON) 
 		@Produces(MediaType.TEXT_PLAIN) 
 		public String updateProject(String projectData) 
@@ -71,7 +71,7 @@ public class ProjectService {
 			String projectDesc = projectObject.get("projectDesc").getAsString(); 
 			String fundAmount = projectObject.get("fundAmount").getAsString(); 
 			
-			String output = projectObj.updateProduct(projectID, projectCode, projectName, projectDesc, fundAmount); 
+			String output = projectObj.updateProject(projectID, projectCode, projectName, projectDesc, fundAmount); 
 		
 			return output; 
 		}
@@ -82,7 +82,7 @@ public class ProjectService {
 	
 	//pending projects
 		@DELETE
-		@Path("/Projects") 
+		@Path("/") 
 		@Consumes(MediaType.APPLICATION_XML) 
 		@Produces(MediaType.TEXT_PLAIN) 
 		public String deleteProject(String projectData) 
@@ -92,7 +92,7 @@ public class ProjectService {
 		 
 			//Read the value from the element <productID>
 			String projectID = doc1.select("projectID").text(); 
-			String output = projectObj.deleteProduct(projectID); 
+			String output = projectObj.deleteProject(projectID); 
 			return output; 
 		}
 	
