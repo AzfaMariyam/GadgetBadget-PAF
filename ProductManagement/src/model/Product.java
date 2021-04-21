@@ -24,6 +24,8 @@ public class Product {
 	
 	
 	
+	//INSERTING
+	
 	//Inserting completed projects to the System 
 	
 	public String insertProduct(String pcode , String pname , String pdesc , String price) {
@@ -71,6 +73,15 @@ public class Product {
 	}
 
 	
+	
+	
+
+	
+	
+	
+	
+	//READING
+		
 	//Reading the projects that are completed
 	public String readProducts() {
 		
@@ -141,7 +152,18 @@ public class Product {
 	
 	
 	
-	//Delete a Project
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	//DELETING	
+	
+	//Delete a Completed Project
 	public String deleteProduct(String productID) 
 	 { 
 		String output = ""; 
@@ -177,7 +199,13 @@ public class Product {
 	
 	
 	
-	//Updating project details
+	
+		
+		
+		
+	//UPDATING	
+		
+	//Updating completed project details
 	public String updateProduct(String pID , String pcode , String pname , String pdesc , String price)
 	{ 
 		String output = ""; 
@@ -215,7 +243,6 @@ public class Product {
 	 } 
 	
 	
-	
-	
+
 	
 }
