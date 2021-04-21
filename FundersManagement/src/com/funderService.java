@@ -83,5 +83,36 @@ public class funderService {
 			return output; 
 		}
 	
+		
+		
+		//Updating
+		//Complete projects
+		
+		@PUT
+		@Path("/") 
+		@Consumes(MediaType.APPLICATION_JSON) 
+		@Produces(MediaType.TEXT_PLAIN) 
+		public String updateFunders(String funderData) 
+		{ 
+			//Convert the input string to a JSON object 
+			JsonObject funderObject = new JsonParser().parse(funderData).getAsJsonObject(); 
+			
+			//Read the values from the JSON object
+			String funderID = funderObject.get("funderID").getAsString();
+			String funderCode = funderObject.get("funderCode").getAsString(); 
+			String funderName = funderObject.get("funderName").getAsString(); 
+			String funderAddress = funderObject.get("funderAddress").getAsString(); 
+			String funderTel = funderObject.get("funderTel").getAsString(); 
+			String funderEmail = funderObject.get("funderEmail").getAsString();
+			String funderGender = funderObject.get("funderGender").getAsString();
+			String funderFund = funderObject.get("funderFund").getAsString();
+			String funderTime = funderObject.get("funderTime").getAsString();
+			String funderDes = funderObject.get("funderDes").getAsString();
+			
+			
+			String output = funderObj.updateFunders(funderID,funderCode,funderName,funderAddress,funderTel,funderEmail,funderGender,funderFund,funderTime,funderDes); 
+		
+			return output; 
+		}
 
 }

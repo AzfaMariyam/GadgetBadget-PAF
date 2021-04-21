@@ -199,7 +199,54 @@ public class funder {
 			} 
 			
 			return output; 
+		 }
+		
+		
+		//UPDATING	
+		
+		//Updating completed project details
+		public String updateFunders(String fID,String code , String name , String address , String tel , String email , String gender,String fund, String time, String desc)
+		{ 
+			String output = ""; 
+			try
+			{ 
+				Connection con = connect(); 
+				if (con == null) 
+				{return "Error while connecting to the database for updating."; } 
+				
+				// create a prepared statement
+				String query = "UPDATE funders SET funderCode=?,funderName=?,funderAddress=?,funderTel=?,funderEmail=?,funderGender=?,funderFund=?,funderTime=?,funderDes=?WHERE funderID=?"; 
+		
+				PreparedStatement preparedStmt = con.prepareStatement(query); 
+		
+				// binding values
+				
+				preparedStmt.setString(1,code);
+				preparedStmt.setString(2,name);
+				preparedStmt.setString(3,address);
+				preparedStmt.setString(4,tel);
+				preparedStmt.setString(5,email);
+				preparedStmt.setString(6,gender);
+				preparedStmt.setDouble(7,Double.parseDouble(fund));
+				preparedStmt.setString(8,time);
+				preparedStmt.setString(9,desc); 
+				preparedStmt.setInt(10, Integer.parseInt(fID)); 
+		 
+				// execute the statement
+				preparedStmt.execute(); 
+				con.close(); 
+		 
+				output = "Updated successfully"; 
+			} 
+			catch (Exception e) 
+			{ 
+				output = "Error while updating"; 
+				System.err.println(e.getMessage()); 
+			} 
+			
+			return output; 
 		 } 
+		
 		
 
 	
