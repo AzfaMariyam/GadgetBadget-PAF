@@ -33,7 +33,7 @@ public class funder {
 	//READING
 		
 	//Reading the projects that are completed
-	public String readFunders() {
+	public String viewFunders() {
 		
 		String output = "";
 		
@@ -118,6 +118,55 @@ public class funder {
 	
 	
 	
+	//insert operation
+	
+	public String insertFunders(String code , String name , String address , String tel , String email , String gender,String fund, String time, String desc) {
+			
+			String output = "";
+			
+			try {
+				
+				Connection con = connect();
+				
+				if(con == null) {
+					return "Error while connecting to the database for inserting";
+				}
+				
+				//create a prepared statement
+				String query = " insert into funders(funderID,funderCode,funderName,funderAddress,funderTel,funderEmail,funderGender,funderFund,funderTime,funderDes)" 
+				+ " values(?,?,?,?,?,?,?,?,?,?)";
+				
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+				
+				//binding values
+				preparedStmt.setInt(1,0);
+				preparedStmt.setString(2,code);
+				preparedStmt.setString(3,name);
+				preparedStmt.setString(4,address);
+				preparedStmt.setString(5,tel);
+				preparedStmt.setString(6,email);
+				preparedStmt.setString(7,gender);
+				preparedStmt.setDouble(8,Double.parseDouble(fund));
+				preparedStmt.setString(9,time);
+				preparedStmt.setString(10,desc);
+				
+				//execute the statement
+				preparedStmt.execute();
+				con.close();
+				
+				output = "Inserted successfully";
+			}
+			catch(Exception e) {
+				
+				output = "Error while inserting";
+				System.err.println(e.getMessage());
+				
+			}
+			
+			return output;
+			
+		}
+
 	
 	
 	
