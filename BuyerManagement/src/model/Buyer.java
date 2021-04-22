@@ -13,12 +13,15 @@ public class Buyer {
 	 Class.forName("com.mysql.jdbc.Driver"); 
 	 
 	 //Provide the correct details: DBServer/DBName, username, password 
-	 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", ""); 
+	 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/buyers", "root", ""); 
 	 } 
 	 catch (Exception e) 
 	 {e.printStackTrace();} 
 	 return con; 
 	 } 
+	
+	
+	//Insert buyer details
 	public String insertDetails(String name, String gender, String address, String contactno, String email) 
 	 { 
 	 String output = ""; 
@@ -28,7 +31,7 @@ public class Buyer {
 	 if (con == null) 
 	 {return "Error while connecting to the database for inserting."; } 
 	 // create a prepared statement
-	 String query = " insert into items  (`BuyerID`,`Name`,`Gender`,`Address`,`ContactNo`,`Email`)"
+	 String query = " insert into buyer_details  (`BuyerID`,`Name`,`Gender`,`Address`,`ContactNo`,`Email`)"
 	 + " values (?, ?, ?, ?, ?,?)"; 
 	 PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 // binding values
@@ -51,6 +54,9 @@ public class Buyer {
 	 } 
 	 return output; 
 	 } 
+
+	
+	//read buyer details
 	public String readDetails() 
 	 { 
 	 String output = ""; 
@@ -60,23 +66,23 @@ public class Buyer {
 	 if (con == null) 
 	 {return "Error while connecting to the database for reading."; } 
 	 // Prepare the html table to be displayed
-	 output = "<table border='1'><tr><th>ID</th><th>Name</th>" +
+	 output = "<table border='1'><tr><th>Name</th>" +
 	 "<th>Gender</th>" +"<th>Address</th>"+
 	 "<th>ContactNo</th>" +"<th>Email</th>"+
 	 "<th>Update</th><th>Remove</th></tr>"; 
 	 
-	 String query = "select * from items"; 
+	 String query = "select * from buyer_details"; 
 	 Statement stmt = con.createStatement(); 
 	 ResultSet rs = stmt.executeQuery(query); 
 	 // iterate through the rows in the result set
 	 while (rs.next()) 
 	 { 
-	 String buyerId = Integer.toString(rs.getInt("BuyerID")); 
-	 String name = rs.getString("Name"); 
-	 String gender = rs.getString("Gender"); 
-	 String address = rs.getString("Address");
-	 String contactno = rs.getString("ContactNo");
-	 String email = rs.getString("Email"); 
+	 String buyerId = Integer.toString(rs.getInt("buyerId")); 
+	 String name = rs.getString("name"); 
+	 String gender = rs.getString("gender"); 
+	 String address = rs.getString("address");
+	 String contactno = rs.getString("contactno");
+	 String email = rs.getString("email"); 
 	 
 	 
 	 // Add into the html table
@@ -104,6 +110,9 @@ public class Buyer {
 	 } 
 	 return output; 
 	 } 
+	
+	
+	//update buyer details
 	public String updateDetails(String id, String name, String gender, String address, String contactno, String email)
 	{
 		String output = ""; 
@@ -113,15 +122,15 @@ public class Buyer {
 		 if (con == null) 
 		 {return "Error while connecting to the database for updating."; } 
 		 // create a prepared statement
-		 String query = "UPDATE items SET Name=?,Gender=?,Address=?,ContactNo=?, Email=? WHERE BuyerID=?"; 
+		 String query = "UPDATE buyer_details SET Name=?,Gender=?,Address=?,ContactNo=?, Email=? WHERE BuyerID=?"; 
 		 PreparedStatement preparedStmt = con.prepareStatement(query); 
 		 // binding values
-		 preparedStmt.setString(1, id); 
-		 preparedStmt.setString(2, name); 
-		 preparedStmt.setString(3, gender); 
-		 preparedStmt.setString(4, address); 
-		 preparedStmt.setString(5, contactno); 
-		 preparedStmt.setString(6, email); 
+		 preparedStmt.setString(1, name); 
+		 preparedStmt.setString(2, gender); 
+		 preparedStmt.setString(3, address); 
+		 preparedStmt.setString(4, contactno); 
+		 preparedStmt.setString(5, email); 
+		 preparedStmt.setInt(6, Integer.parseInt(id));
 		 // execute the statement
 		 preparedStmt.execute(); 
 		 con.close(); 
@@ -134,6 +143,8 @@ public class Buyer {
 		 } 
 		 return output; 
 		 } 
+	
+	//delete buyer details
 		public String deleteDetails(String id) 
 		 { 
 		 String output = ""; 
@@ -143,7 +154,7 @@ public class Buyer {
 		 if (con == null) 
 		 {return "Error while connecting to the database for deleting."; } 
 		 // create a prepared statement
-		 String query = "delete from items where BuyerID=?"; 
+		 String query = "delete from buyer_details where BuyerID=?"; 
 		 PreparedStatement preparedStmt = con.prepareStatement(query); 
 		 // binding values
 		 preparedStmt.setString(1, id);
@@ -159,7 +170,7 @@ public class Buyer {
 		 } 
 		 return output; 
 		 } 
-	
+
 	
 
 }
