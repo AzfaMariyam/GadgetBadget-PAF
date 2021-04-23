@@ -21,7 +21,7 @@ public class Shipping {
 		 }
 		
 		//insert shipping details
-		public String insertShipping(String firstName, String lastName, String address, String city, String country, int zipcode, int phoneno) 
+		public String insertShipping(String firstName, String lastName, String address, String city, String country, String zipcode, String phoneno) 
 		{ 
 			String output = ""; 
 			try{
@@ -32,8 +32,8 @@ public class Shipping {
 				} 
 				
 				// create a prepared statement
-				String query = " insert into shippingdetails (`firstName`,`lastName`,`address`,`city`,`country`, `zipcode`,`phoneno`)"
-						+ " values (?, ?, ?, ?, ?)"; 
+				String query = " insert into shippingdetails (`shipmentID`,`firstName`,`lastName`,`address`,`city`,`country`, `zipcode`,`phoneno`)"
+						+ " values (?, ?, ?, ?, ?, ?, ?, ?)"; 
 				
 				PreparedStatement preparedStmt = con.prepareStatement(query); 
 				// binding values
@@ -43,8 +43,8 @@ public class Shipping {
 				 preparedStmt.setString(4, address); 
 				 preparedStmt.setString(5, city); 
 				 preparedStmt.setString(6, country); 
-				 preparedStmt.setInt(7, zipcode); 
-				 preparedStmt.setInt(8, phoneno);
+				 preparedStmt.setInt(7, Integer.parseInt(zipcode)); 
+				 preparedStmt.setInt(8, Integer.parseInt(phoneno));
 			//	 preparedStmt.setDouble(4, Double.parseDouble(price)); 
 				 
 				 
@@ -96,8 +96,8 @@ public class Shipping {
 					 String address = rs.getString("address"); 
 					 String city = rs.getString("city"); 
 					 String country = rs.getString("country"); 
-					 String zipcode = rs.getString("zipcode"); 
-					 String phoneno = rs.getString("phoneno"); 
+					 String zipcode = Integer.toString(rs.getInt("zipcode")); 
+					 String phoneno = Integer.toString(rs.getInt("phoneno")); 
 					 
 					 
 					 // Add into the html table
@@ -134,7 +134,7 @@ public class Shipping {
 		} 
 		
 		
-		public String updateItem(String ID, String firstname, String lastname, String address, String city, String country, int zipcode, int phoneno)
+		public String updateShipment(String shipmentID, String firstname, String lastname, String address, String city, String country, String zipcode, String phoneno)
 		{ 
 			 String output = ""; 
 			 
@@ -148,8 +148,7 @@ public class Shipping {
 				 } 
 				 
 				 // create a prepared statement
-				 String query = "UPDATE shipmentdetails SET firstname=?,lastname=?,address=?,city=?,country=?,zipcode=?,phoneno=? WHERE shipmentID +"
-				 		+ "=?"; 
+				 String query = "UPDATE shippingdetails SET firstname=?,lastname=?,address=?,city=?,country=?,zipcode=?,phoneno=? WHERE shipmentID =?"; 
 				 
 				 PreparedStatement preparedStmt = con.prepareStatement(query); 
 				 
@@ -158,10 +157,10 @@ public class Shipping {
 				 preparedStmt.setString(2, lastname); 
 				 preparedStmt.setString(3, address); 
 				 preparedStmt.setString(4, city); 
-				 preparedStmt.setString(35, country); 
-				 preparedStmt.setInt(6, zipcode);
-				 preparedStmt.setInt(7, phoneno);
-				 preparedStmt.setInt(8, Integer.parseInt(ID)); 
+				 preparedStmt.setString(5, country); 
+				 preparedStmt.setInt(6, Integer.parseInt(zipcode) );
+				 preparedStmt.setInt(7, Integer.parseInt(phoneno));
+				 preparedStmt.setInt(8, Integer.parseInt(shipmentID)); 
 				
 				 // execute the statement
 				 preparedStmt.execute(); 
@@ -170,7 +169,7 @@ public class Shipping {
 			 } 
 			 catch (Exception e) 
 			 { 
-				 output = "Error while updating the item."; 
+				 output = "Error while updating the shipment details."; 
 				 System.err.println(e.getMessage()); 
 			 } 
 			 
@@ -178,7 +177,7 @@ public class Shipping {
 			 
 		} 
 		
-		public String deleteItem(String shipmentID) 
+		public String deleteShipment(String shipmentID) 
 		{ 
 			String output = ""; 
 			 try
@@ -191,7 +190,7 @@ public class Shipping {
 				 }
 				 
 				 // create a prepared statement
-				 String query = "delete from items where shipmentID=?"; 
+				 String query = "delete from shippingdetails where shipmentID=?"; 
 				 
 				 PreparedStatement preparedStmt = con.prepareStatement(query); 
 				 
