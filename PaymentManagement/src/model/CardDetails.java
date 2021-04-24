@@ -31,7 +31,7 @@ public class CardDetails {
 			
 			// create a prepared statement
 			String query = " insert into carddetails (`cardDetID`,`cardType`,`cardNo`,`expMonth`,`expYear`, `securityCode`)"
-					+ " values (?, ?, ?, ?, ?)"; 
+					+ " values (?, ?, ?, ?, ?, ?)"; 
 			
 			PreparedStatement preparedStmt = con.prepareStatement(query); 
 			// binding values
@@ -147,7 +147,8 @@ public class CardDetails {
 			 preparedStmt.setInt(2, Integer.parseInt(cardNo)); 
 			 preparedStmt.setInt(3, Integer.parseInt(expMonth)); 
 			 preparedStmt.setInt(4, Integer.parseInt(expYear)); 
-			 preparedStmt.setInt(5, Integer.parseInt(securityCode)); 
+			 preparedStmt.setInt(5, Integer.parseInt(securityCode));
+			 preparedStmt.setInt(6, Integer.parseInt(cardDetID));
 			
 			 // execute the statement
 			 preparedStmt.execute(); 
@@ -164,7 +165,7 @@ public class CardDetails {
 		 
 	} 
 	
-	public String deleteItem(String cardDetID) 
+	public String deleteCardDetails(String cardDetID) 
 	{ 
 		String output = ""; 
 		 try
