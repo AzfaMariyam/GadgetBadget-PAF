@@ -24,7 +24,7 @@ public class ShippingService {
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML) 
-	public String readItems() 
+	public String readShipmentDets() 
 	{ 
 	 return shipObj.readShipmentDetails();
 	} 
@@ -34,7 +34,7 @@ public class ShippingService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
 	@Produces(MediaType.TEXT_PLAIN) 
-	public String insertItem(
+	public String insertShipmentDetails(
 	 @FormParam("firstName") String firstName, 
 	 @FormParam("lastName") String lastName, 
 	 @FormParam("address") String address, 
