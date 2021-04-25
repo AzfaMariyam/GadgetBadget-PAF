@@ -26,7 +26,7 @@ public class CardDetails {
 			Connection con = connect(); 
 			if (con == null) 
 			{
-				return "Error while connecting to the database for inserting."; 
+				return "Error while connecting to the database for inserting card details."; 
 			} 
 			
 			// create a prepared statement
@@ -68,7 +68,7 @@ public class CardDetails {
 			 Connection con = connect(); 
 			 if (con == null) 
 			 {
-				 return "Error while connecting to the database for reading.";  
+				 return "Error while connecting to the database for reading card details.";  
 			 }
 			 
 			 // Prepare the html table to be displayed
@@ -153,7 +153,7 @@ public class CardDetails {
 			 // execute the statement
 			 preparedStmt.execute(); 
 			 con.close(); 
-			 output = "Updated successfully"; 
+			 output = "Updated card details successfully"; 
 		 } 
 		 catch (Exception e) 
 		 { 
@@ -188,7 +188,7 @@ public class CardDetails {
 			 // execute the statement
 			 preparedStmt.execute(); 
 			 con.close(); 
-			 output = "Deleted successfully"; 
+			 output = "Deleted card details successfully"; 
 		 } 
 		 catch (Exception e) 
 		 { 
