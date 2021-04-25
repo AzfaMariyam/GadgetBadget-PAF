@@ -90,7 +90,7 @@ public class ResearcherService {
 	@Path("/") 
 	@Consumes(MediaType.APPLICATION_XML) 
 	@Produces(MediaType.TEXT_PLAIN) 
-	public String deleteUser(String researcherData) 
+	public String deleteUsers(String researcherData) 
 	{ 
 		//Convert the input string to an XML document
 		Document doc = Jsoup.parse(researcherData, "", Parser.xmlParser()); 
